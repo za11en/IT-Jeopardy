@@ -142,13 +142,12 @@ function shuffleArray(array) {
     }
 }
 
-// --- MODIFIED: This function now handles the new loading sequence ---
+
 function initializeBoard() {
     closeQuestionModal();
     jeopardyBoard.innerHTML = '';
     answeredQuestions.clear();
 
-    // 1. Add loading class to prevent clicks during setup
     jeopardyBoard.classList.add('loading');
     
     const allCategories = [...gameData.categories];
@@ -159,7 +158,6 @@ function initializeBoard() {
 
     jeopardyBoard.style.setProperty('--num-categories', activeGameData.length);
 
-    // 2. Load all question cells (the point values) first
     activeGameData.forEach((category, categoryIndex) => {
         category.questions.forEach((questionSlot, questionIndex) => {
             const questionCell = document.createElement('div');
@@ -168,9 +166,8 @@ function initializeBoard() {
             questionCell.dataset.questionIndex = questionIndex;
             questionCell.dataset.id = `${categoryIndex}-${questionIndex}`;
             questionCell.textContent = `$${questionSlot.value}`;
-            questionCell.tabIndex = -1; // Disable tabbing until board is ready
-            // Stagger the animation of each cell
-            questionCell.style.animationDelay = `${(questionIndex * 0.05) + (categoryIndex * 0.1)}s`;
+            questionCell.tabIndex = -1; 
+            questionCell.style.animationDelay = `${(questionIndex * 0.05) + (categoryIndex * 0.2)}s`;
             questionCell.style.gridColumn = `${categoryIndex + 1}`;
             questionCell.style.gridRow = `${questionIndex + 2}`;
             questionCell.addEventListener('click', openQuestion);
@@ -179,8 +176,8 @@ function initializeBoard() {
         });
     });
 
-    // 3. Load category titles sequentially after a short delay
-    const categoryLoadDelay = 300; // ms between each category appearing
+
+    const categoryLoadDelay = 350;
     activeGameData.forEach((category, categoryIndex) => {
         setTimeout(() => {
             const categoryTitle = document.createElement('div');
@@ -190,22 +187,19 @@ function initializeBoard() {
             categoryTitle.style.gridRow = `1`;
             jeopardyBoard.appendChild(categoryTitle);
 
-            // 4. If this is the last category, enable the board
             if (categoryIndex === activeGameData.length - 1) {
                 setTimeout(() => {
                     jeopardyBoard.classList.remove('loading');
-                    // Re-enable tabbing on cells
+
                     jeopardyBoard.querySelectorAll('.question-cell').forEach(cell => cell.tabIndex = 0);
-                }, 500); // Wait for the last animation to finish
+                }, 500); 
             }
-        }, 500 + (categoryLoadDelay * categoryIndex)); // Initial delay + staggered appearance
+        }, 500 + (categoryLoadDelay * categoryIndex)); 
     });
 }
 
 
 // --- 2. CORE GAMEPLAY LOGIC ---
-
-// (The rest of the file remains the same as the previous correct version)
 
 function updatePlayersUI() {
     if (gameMode === 'solo') return;
@@ -411,4 +405,5 @@ closeButton.addEventListener('click', goToNextQuestion);
 submitAnswerButton.addEventListener('click', checkAnswer);
 revealAnswerButton.addEventListener('click', revealAnswer);
 nextQuestionButton.addEventListener('click', goToNextQuestion);
+
 userAnswerInput.addEventListener('keypress', (e) => (e.key === 'Enter' && !userAnswerInput.disabled) && checkAnswer());
