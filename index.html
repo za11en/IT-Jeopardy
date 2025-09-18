@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeopardy Technical Support Foundations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="start-screen" class="screen">
+        <div class="header">Technical Support Foundations</div>
+        <p class="subtitle">Choose your game mode</p>
+        <div class="mode-selection">
+            <button id="solo-mode-btn" class="control-button mode-btn">Solo Freestyle</button>
+            <button id="multiplayer-mode-btn" class="control-button mode-btn">3 Players</button>
+        </div>
+    </div>
+
+    <!-- This is the full-screen container (the "stage") -->
+    <div id="player-name-screen" class="screen" style="display: none;">
+        <!-- This is the box that will actually animate -->
+        <div id="player-name-box">
+            <h2 id="player-prompt-title">Enter Player 1 Name</h2>
+            <input type="text" id="player-name-input" placeholder="Name..." maxlength="12">
+            <button id="submit-player-name-btn" class="control-button">Continue</button>
+        </div>
+    </div>
+
+    <div id="game-container" class="game-container screen" style="display: none;">
+        <div class="header">Technical Support Foundations</div>
+        <div class="controls-container">
+            <div class="top-controls-placeholder"></div>
+            <button id="main-menu-button" class="control-button">Main Menu</button>
+        </div>
+
+        <div id="jeopardy-board" class="jeopardy-board"></div>
+        
+        <div id="players-footer-container"></div>
+
+        <div id="question-modal" class="modal">
+            <div class="modal-content">
+                <button class="close-button" title="Close question">×</button>
+                <p id="question-text"></p>
+                <input type="text" id="user-answer-input" placeholder="What is...">
+                <button id="submit-answer-button">Submit Answer</button>
+                <div id="feedback-message"></div>
+                <button id="reveal-answer-button">Reveal Answer</button>
+                <p id="correct-answer-text" style="display:none;"></p>
+                <button id="next-question-button" style="display:none;">Next Question</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="game-over-screen" class="screen" style="display: none;">
+        <div class="header">Game Over</div>
+        <div id="final-results">
+            <h2 id="winner-message"></h2>
+            <div id="final-scores"></div>
+        </div>
+        <button id="play-again-btn" class="control-button">Play Again</button>
+    </div>
+
+    <div class="author">Made by Zack Allinson</div>
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
