@@ -212,7 +212,6 @@ body {
     grid-template-rows: auto repeat(5, 1fr);
 }
 
-/* --- NEW: This class disables clicks during the loading animation --- */
 .jeopardy-board.loading {
     pointer-events: none;
 }
@@ -291,5 +290,6 @@ body {
 #winner-message { font-size: 2.5rem; margin-bottom: 30px; color: var(--accent-color); }
 #final-scores { display: flex; flex-direction: column; gap: 15px; margin-bottom: 40px; font-size: 1.5rem; }
 .final-score-item { font-family: var(--font-family-monospace); }
+
 
 .author { margin-top: 20px; font-size: 0.9rem; color: var(--light-text-color); }
