@@ -60,7 +60,7 @@ body {
 }
 
 @keyframes flyInFromRight {
-    from { transform: translateX(100vw); }
+    from { transform: translateX(150vw); }
     to { transform: translateX(0); }
 }
 @keyframes flyOutToLeft {
